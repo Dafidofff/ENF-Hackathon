@@ -14,3 +14,17 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 ```bash
 python fit_enf.py --config=configs/enf_config.py
 ```
+
+
+
+### Double Pendulum
+
+#### To generate the dataset
+```bash
+python datasets/double_pendulum/generate_pendulum_dataset.py
+```
+
+#### To visualize the dataset
+```bash
+python datasets/double_pendulum/visualize_dataset.py
+```
