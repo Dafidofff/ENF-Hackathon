@@ -2,7 +2,7 @@ import jax
 import jax.numpy as jnp
 from flax import linen as nn
 
-from typing import Callable
+from typing import Tuple, Callable
 
 
 class PosEmb(nn.Module):
@@ -23,8 +23,7 @@ class EquivariantNeuralField(nn.Module):
         num_hidden (int): The number of hidden units.
         num_heads (int): The number of attention heads.
         num_out (int): The number of output coordinates.
-        emb_freq_q (float): The frequency of the positional embedding for the query.
-        emb_freq_v (float): The frequency of the positional embedding for the value function.
+        emb_freq (float): The frequency of the positional embedding.
         nearest_k (int): The number of nearest latents to consider.
         bi_invariant (Callable): The bi-invariant function to use.
     """
@@ -32,15 +31,14 @@ class EquivariantNeuralField(nn.Module):
     att_dim: int
     num_heads: int
     num_out: int
-    emb_freq_q: float
-    emb_freq_v: float
+    emb_freq: Tuple[float, float]
     nearest_k: int
     bi_invariant: Callable
 
     def setup(self):
         # Positional embedding that takes in relative positions.
-        self.pos_emb_q = nn.Sequential([PosEmb(self.num_hidden, self.emb_freq_q), nn.Dense(self.num_heads * self.att_dim)])
-        self.pos_emb_v = nn.Sequential([PosEmb(self.num_hidden, self.emb_freq_v), nn.Dense(2 * self.num_hidden)])
+        self.pos_emb_q = nn.Sequential([PosEmb(self.num_hidden, self.emb_freq[0]), nn.Dense(self.num_heads * self.att_dim)])
+        self.pos_emb_v = nn.Sequential([PosEmb(self.num_hidden, self.emb_freq[1]), nn.Dense(2 * self.num_hidden)])
 
         # Query, key, value functions.
         self.W_k = nn.Dense(self.num_heads * self.att_dim)
@@ -89,7 +87,7 @@ class EquivariantNeuralField(nn.Module):
         v = v.reshape(v.shape[:-1] + (self.num_heads, -1))
 
         # Calculate the attention weights, apply gaussian mask based on bi-invariant magnitude, broadcasting over heads.
-        att_logits = ((q * k).sum(axis=-1, keepdims=True) / self.att_dim) - ((1 / g ** 2) * zx_mag)[..., None, :]
+        att_logits = (q * k).sum(axis=-1, keepdims=True) - ((1 / g ** 2) * zx_mag)[..., None, :]
         att = jax.nn.softmax(att_logits, axis=2)
 
         # Attend the values to the queries and keys.
