@@ -11,7 +11,7 @@ import optax
 
 # Repo imports
 from datasets import get_dataloader 
-from models.downstream.cnn import ResidualCNN
+from models.cnn import ResidualCNN
 
 
 def get_config():
@@ -23,21 +23,26 @@ def get_config():
     # Define the CNN model parameters
     config.cnn = ml_collections.ConfigDict()
     config.cnn.num_classes = 10
-    config.cnn.features = [32, 64, 128]      # Feature sizes for each convolutional layer
+    config.cnn.features = [32, 64, 128]             # Feature sizes for each convolutional layer
 
-    # Dataset config
+     # Dataset config
     config.dataset = ml_collections.ConfigDict()
-    config.dataset.path = "./data"
-    config.dataset.name = "cifar10"
-    config.dataset.num_signals_train = -1    # Number of signals used for training (-1 for all)
+    config.dataset.path = "./data"  
+    config.dataset.name = "FIGURE"                  # Choose between cifar10 and FIGURE
+    config.dataset.num_signals_train = -1           # Number of training signals (-1 for all)
     config.dataset.num_signals_test = -1
     config.dataset.batch_size = 32
     config.dataset.num_workers = 8
 
+    # Specific FIGURE dataset parameters (ONLY FOR FIGURE DATASET)
+    config.dataset.figure_type = "FIGURE-Shape-B"   # Choose between FIGURE-Shape-B and FIGURE-Shape-CB
+    config.dataset.swap_bias = False
+    config.dataset.color_consistency = 0.9
+
     # Training config
     config.train = ml_collections.ConfigDict()
-    config.train.lr = 1e-3
-    config.train.num_epochs = 500
+    config.train.lr = 5e-4
+    config.train.num_epochs = 50
     config.train.log_interval = 5
 
     config.task = "pixel-classification"
