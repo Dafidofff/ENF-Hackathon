@@ -52,7 +52,7 @@ Here are useful references to help you get started:
 
 ---
 
-## 🛠️ Running the Example Notebook
+## 🛠️ Running the Examples
 To set up your environment, follow these steps (**Requires CUDA 12** for GPU acceleration):
 
 ```bash
@@ -64,6 +64,12 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 For people working with a Mac Book run the following command to install jax
 ```bash
 pip install jax-metal
+```
+
+### 📊 Running the pixel based
+To run the pixel based model, use:
+```bash
+export PYTHONPATH="."; python experiments/pixel_space_classify.py 
 ```
 
 ---
