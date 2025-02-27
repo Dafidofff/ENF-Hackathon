@@ -5,7 +5,6 @@ import torch
 import torchvision
 from torch.utils import data
 
-
 def image_to_numpy(image):
     return np.array(image) / 255
 

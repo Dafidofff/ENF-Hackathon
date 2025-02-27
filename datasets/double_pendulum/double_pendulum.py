@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import matplotlib.patches as patches
 
+
 class DoublePendulum:
     def __init__(self, L1=1.0, L2=1.0, M1=1.0, M2=1.0, G=9.81):
         self.L1, self.L2 = L1, L2  # lengths of rods
