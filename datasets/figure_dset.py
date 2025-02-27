@@ -10,7 +10,7 @@ class FigureDataset(Dataset):
 
     BASE_URL_TEMPLATE = "https://staff.fnwi.uva.nl/e.j.bekkers/FIGURE/{}/"
 
-    def __init__(self, dataset_name, split="train", color_consistency=1.0, data_dir="figure_datasets", transform=None, download=True):
+    def __init__(self, dataset_name, split="train", color_consistency=1.0, data_dir="data/figure_datasets", transform=None, download=True):
         """
         Args:
             dataset_name (str): Name of the dataset (e.g., 'FIGURE-Shape-B').

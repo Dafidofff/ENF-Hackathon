@@ -5,7 +5,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 
-from experiments.models.enf.bi_invariants import TranslationBI, RotoTranslationBI2D
+from models.enf.bi_invariants import TranslationBI, RotoTranslationBI2D
 
 
 def initialize_grid_positions(batch_size: int, num_latents: int, data_dim: int) -> jnp.ndarray:

@@ -25,7 +25,7 @@ def get_config():
     # Define the UNet model parameters
     config.unet = ml_collections.ConfigDict()
     config.unet.num_classes = 10
-    config.unet.features = 32
+    config.unet.features = 64
     config.unet.layers = 4
 
     # Diffusion model config
@@ -220,6 +220,8 @@ def main(_):
             # Log the epoch loss
             wandb.log({"epoch-diffusion-loss": sum(epoch_loss) / len(epoch_loss)}, step=glob_step)
             epoch_loss = []
+
+    run.finish()
 
 if __name__ == "__main__":
     app.run(main)
