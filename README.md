@@ -60,8 +60,8 @@ To set up your environment, follow these steps (**Requires CUDA 12** for GPU acc
 ```bash
 conda create -n enf-hackathon python=3.11
 conda activate enf-hackathon
-pip install -U "jax[cuda12]" flax optax matplotlib ml-collections pillow h5py tqdm jupyter
-tpip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install -U "jax[cuda12]" flax optax matplotlib ml-collections pillow h5py tqdm jupyter wandb
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 ```
 
 ---

@@ -8,7 +8,10 @@ from ml_collections import config_flags
 import jax
 import jax.numpy as jnp
 import optax
-import flax.linen as nn
+
+# Repo imports
+from datasets import get_dataloader 
+from models.downstream.cnn import ResidualCNN
 
 
 def get_config():
@@ -45,37 +48,6 @@ def get_config():
 _CONFIG = config_flags.DEFINE_config_dict("config", get_config())
 
 
-class ResidualBlock(nn.Module):
-    features: int
-
-    @nn.compact
-    def __call__(self, x):
-        residual = x
-        x = nn.Conv(self.features, kernel_size=(3, 3), padding="SAME")(x)
-        x = nn.relu(x)
-        x = nn.Conv(self.features, kernel_size=(3, 3), padding="SAME")(x)
-
-        if residual.shape[-1] != x.shape[-1]:
-            residual = nn.Conv(self.features, kernel_size=(1, 1), padding="SAME")(residual)
-
-        x = nn.relu(x + residual)
-        return x
-
-
-class ResidualCNN(nn.Module):
-    num_classes: int
-    features: list
-
-    @nn.compact
-    def __call__(self, x):
-        for features in self.features:
-            x = ResidualBlock(features=features)(x)
-            x = nn.max_pool(x, window_shape=(2, 2), strides=(2, 2))
-        x = jnp.mean(x, axis=(1, 2))
-        x = nn.Dense(self.num_classes)(x)
-        return x
-
-
 def main(_):
     # Get config
     config = _CONFIG.value
@@ -88,7 +60,6 @@ def main(_):
     ##############################
 
     # Load dataset, get sample image
-    from datasets import get_dataloader # moved import here to avoid circular import issues.
     train_dloader, test_dloader = get_dataloader(config.dataset)
     sample = next(iter(train_dloader))
     img_shape = sample[0].shape[1:]
