@@ -26,7 +26,7 @@ Here are key challenges and ideas for improvement:
 | Problem | Potential Solution |
 |---------|---------------------|
 | **Underpowered decoder with many/large latents** | Multi-layer ENF? Self-attention between latents? |
-| **MAML struggles with latent pose inference (local minima?)** | Replace SGD with an encoder? |
+| **MAML struggles with latent pose inference (local minima?)** | Replace SGD with an encoder? Learn prior on poses? |
 | **Limited performance of downstream models** | Additional structure in ENF latent space? A VAE variant? |
 | **Current latents are forcibly local, some tasks need global features** | Introduce hierarchy? Global/local latent separation? |
 | **Unclear how to represent spatiotemporal data with ENF** | Predictor-corrector scheme (e.g., SAVI++, MooG)? |
