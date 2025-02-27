@@ -1,5 +1,27 @@
 # ENF-Hackathon
 
+## Introduction 
+This repository contains a simple example of how to use Equivariant Neural Fields (ENF) for downstream tasks. Within this hackthon you will try to tackle one of the discussed problems this morning. Think of meaningful position updates or bringing hierarchy to the latent-point clouds. Below we posted a more extensive list of these problems. This code base provides a notebook that demonstrates all different aspects of fitting an equivariant neural field and training a classifier on the latent point clouds.    
+
+
+## Problems and questions
+Problem: Underpowered decoder many/large latents
+Maybe: Multi-layer ENF? Adding self-attention between latents?
+
+Problem: MAML is problematic for inferring latent pose (maybe due to local minima?).
+Maybe: Replace SGD with an encoder?
+
+Problem: General limited performance of downstream models
+Maybe: Adding additional structure to the ENF latent space? Maybe a VAE variant?
+
+Problem: Current latents are forcibly local, some tasks require global information / features are better modelled globally
+Maybe: Hierarchy? Global / local latent separation?
+
+Problem: Unclear how to use ENF to represent spatiotemporal data
+Maybe: Predictor/corrector scheme like SAVI(++), MooG?
+
+Question: How does the choice of RFF embedding (periodic) impact reconstruction / downstream performance?
+
 
 ## Resources
 - [enf_standalone.ipynb](./enf_standalone.ipynb). This notebook can be used as a stand-alone implementation of ENF and contains code for fitting and classificiation. You could e.g. run this on Google Colab.
@@ -19,7 +41,7 @@ pip install -U "jax[cuda12]" flax optax matplotlib ml-collections pillow h5py tq
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 ```
 
-## Implemented datasets
+## Extra dynamics dataset
 
 ### Double Pendulum
 
