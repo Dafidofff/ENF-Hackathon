@@ -31,8 +31,9 @@ Here are key challenges and ideas for improvement:
 | **Current latents are forcibly local, some tasks need global features** | Introduce hierarchy? Global/local latent separation? |
 | **Unclear how to represent spatiotemporal data with ENF** | Predictor-corrector scheme (e.g., SAVI++, MooG)? |
 
-### ❓ Research Question
+### ❓ Research Questions
 - **How does the choice of RFF embedding (periodic) affect reconstruction and downstream performance?**
+- **...**
 
 ---
 
