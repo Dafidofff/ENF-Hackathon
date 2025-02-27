@@ -40,7 +40,7 @@ def get_config():
     config.train.num_epochs = 500
     config.train.log_interval = 5
 
-    config.task = "classification"
+    config.task = "pixel-classification"
     return config
 
 
