@@ -1,58 +1,86 @@
 # ENF-Hackathon
 
-## Introduction 
-This repository contains a simple example of how to use Equivariant Neural Fields (ENF) for downstream tasks. Within this hackthon you will try to tackle one of the discussed problems this morning. Think of meaningful position updates or bringing hierarchy to the latent-point clouds. Below we posted a more extensive list of these problems. This code base provides a notebook that demonstrates all different aspects of fitting an equivariant neural field and training a classifier on the latent point clouds.    
+## 🚀 Introduction
+Welcome to the **ENF-Hackathon**! This repository contains an example implementation of **Equivariant Neural Fields (ENF)** for downstream tasks. During this hackathon, you'll explore and tackle one of the challenges discussed this morning, such as improving position updates or incorporating hierarchy into latent point clouds.
 
+🔍 This codebase includes a **notebook** demonstrating how to fit an equivariant neural field and train a classifier on latent point clouds.
 
-## Problems and questions
-Problem: Underpowered decoder many/large latents
-Maybe: Multi-layer ENF? Adding self-attention between latents?
+### 📊 Performance Evaluation
+We will compare different solutions in **two ways**:
+1. **Downstream Classifier** – Evaluating how meaningful the latent point clouds are.
+2. **Generative Model** – Understanding how well latent representations capture information.
 
-Problem: MAML is problematic for inferring latent pose (maybe due to local minima?).
-Maybe: Replace SGD with an encoder?
+💡 **Note:** Directly comparing ENFs to pixel-based models (e.g., CNNs) is not entirely fair since **ENFs are domain-agnostic**, not designed specifically for the image domain. Focus on improving **ENF-based performance** rather than competing with CNN methods.
 
-Problem: General limited performance of downstream models
-Maybe: Adding additional structure to the ENF latent space? Maybe a VAE variant?
+We provide three datasets to experiment with:
+- **FIGURE** (synthetic shape-based & motion-based dataset)
+- **CIFAR-10** (natural image dataset)
+- **Double Pendulum** (spatiotemporal dataset)
 
-Problem: Current latents are forcibly local, some tasks require global information / features are better modelled globally
-Maybe: Hierarchy? Global / local latent separation?
+---
 
-Problem: Unclear how to use ENF to represent spatiotemporal data
-Maybe: Predictor/corrector scheme like SAVI(++), MooG?
+## 🧩 Problems & Research Questions
+Here are key challenges and ideas for improvement:
 
-Question: How does the choice of RFF embedding (periodic) impact reconstruction / downstream performance?
+### ⚠️ Current Challenges
+| Problem | Potential Solution |
+|---------|---------------------|
+| **Underpowered decoder with many/large latents** | Multi-layer ENF? Self-attention between latents? |
+| **MAML struggles with latent pose inference (local minima?)** | Replace SGD with an encoder? |
+| **Limited performance of downstream models** | Additional structure in ENF latent space? A VAE variant? |
+| **Current latents are forcibly local, some tasks need global features** | Introduce hierarchy? Global/local latent separation? |
+| **Unclear how to represent spatiotemporal data with ENF** | Predictor-corrector scheme (e.g., SAVI++, MooG)? |
 
+### ❓ Research Question
+- **How does the choice of RFF embedding (periodic) affect reconstruction and downstream performance?**
 
-## Resources
-- [enf_standalone.ipynb](./enf_standalone.ipynb). This notebook can be used as a stand-alone implementation of ENF and contains code for fitting and classificiation. You could e.g. run this on Google Colab.
-- [jax_tiny_intro.ipynb](./jax_tiny_intro.ipynb). This 
-- [enf-min-jax](https://github.com/david-knigge/enf-min-jax). This repository contains example implementations of classification and diffusion on CIFAR10, as well as multi-modal segmentation on the OMBRIA satellite imagery dataset. It could be a good resource if you'd like to apply ENF to your own problem.
-- [FIGURE](https://github.com/ebekkers/FIGURE). This repository contains a synthetic dataset for studying shape-based and motion-based representation learning, while controlling for texture bias and global transformations. It also contains baseline results for classification and generative modelling using CNNs, highlighting texture bias in conventional models. Could ENF be an outcome here?
-- [Equivariant Neural Fields](https://arxiv.org/abs/2406.05753). This manuscript contains the formalization of ENF, as well as examples of use-cases. Might be useful as a reference.
-- [PDE solving with Equivariant Neural Fields](https://arxiv.org/abs/2406.06660). This work uses ENF as a backbone for learning to forecast symmetric PDEs over general geometries. Might be useful as a reference.
+---
 
-## Running the example notebook
-Assuming you have a GPU with CUDA 12 installed, you can install the dependencies with the following commands:
+## 📚 Resources
+Here are useful references to help you get started:
+
+📌 **Code & Notebooks**
+- [🔗 `enf_standalone.ipynb`](./enf_standalone.ipynb) – A standalone ENF implementation for fitting & classification. Can be run on Google Colab.
+- [🔗 `jax_tiny_intro.ipynb`](./jax_tiny_intro.ipynb) – A short introduction to JAX, the library used for automatic differentiation in ENF.
+
+📌 **Relevant Repositories**
+- [🛠️ `enf-min-jax`](https://github.com/david-knigge/enf-min-jax) – Example implementations of classification, diffusion (CIFAR10), and multi-modal segmentation (OMBRIA dataset).
+- [📊 `FIGURE`](https://github.com/ebekkers/FIGURE) – A dataset for studying shape/motion-based representation learning, highlighting texture bias in CNNs. Can ENF mitigate this?
+
+📌 **Research Papers**
+- [📜 Equivariant Neural Fields](https://arxiv.org/abs/2406.05753) – The formalization of ENF, including various use cases.
+- [📜 PDE Solving with ENF](https://arxiv.org/abs/2406.06660) – Application of ENF for forecasting symmetric PDEs over general geometries.
+
+---
+
+## 🛠️ Running the Example Notebook
+To set up your environment, follow these steps (**Requires CUDA 12** for GPU acceleration):
 
 ```bash
 conda create -n enf-hackathon python=3.11
 conda activate enf-hackathon
 pip install -U "jax[cuda12]" flax optax matplotlib ml-collections pillow h5py tqdm jupyter
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+tpip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 ```
 
-## Extra dynamics dataset
+---
 
-### Double Pendulum
+## 🌌 Extra Dynamics Dataset: Double Pendulum
+We provide a **spatiotemporal dataset** of a **double pendulum** for experimentation.
 
-Spatiotemporal data 
-
-#### To generate the dataset
+### 📥 Dataset Generation
+Run the following command to generate the dataset:
 ```bash
 python datasets/double_pendulum/generate_pendulum_dataset.py
 ```
 
-#### To visualize the dataset
+### 📊 Dataset Visualization
+To visualize the dataset, use:
 ```bash
 python datasets/double_pendulum/visualize_dataset.py
 ```
+
+---
+
+🎯 **Let’s innovate together and push the boundaries of ENF! 🚀**
+
