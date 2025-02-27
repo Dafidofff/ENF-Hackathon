@@ -13,7 +13,7 @@ import optax
 
 # Custom imports
 from datasets import get_dataloader
-from models.downstream.unet import UNet
+from models.unet import UNet
 
 
 def get_config():
@@ -52,7 +52,7 @@ def get_config():
     # Training config
     config.train = ml_collections.ConfigDict()
     config.train.lr = 5e-4
-    config.train.num_epochs = 500
+    config.train.num_epochs = 10
     config.train.log_interval = 5
 
     config.task = "pixel-generation"

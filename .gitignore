@@ -3,7 +3,6 @@ checkpoints/
 data/*
 outputs/
 wandb/
-figure_datasets/
 figures/
 
 
