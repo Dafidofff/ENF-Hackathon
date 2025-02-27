@@ -1,16 +1,14 @@
 # ENF-Hackathon
 
 ## 🚀 Introduction
-Welcome to the **ENF-Hackathon**! This repository contains an example implementation of **Equivariant Neural Fields (ENF)** for downstream tasks. During this hackathon, you'll explore and tackle one of the challenges discussed this morning, such as improving position updates or incorporating hierarchy into latent point clouds.
-
-🔍 This codebase includes a **notebook** demonstrating how to fit an equivariant neural field and train a classifier on latent point clouds.
+Welcome to the **ENF-Hackathon**! This repository contains an example implementation of **Equivariant Neural Fields (ENF)**. During this hackathon, you'll explore and tackle one of the challenges discussed this morning, such as improving position updates or incorporating hierarchy into latent point clouds. The vision of the hackathon is that you guys get some examples of running ENFs (provided in the notebook), get some example ENF code and some pixel-space equivalents which can be used as baseline. After that, use your inspiration and the provided problems to come up with new ideas and solutions to improve ENFs. You could even come up with a new parametrization of the bi-invariant conditioning. 
 
 ### 📊 Performance Evaluation
 We will compare different solutions in **two ways**:
 1. **Downstream Classifier** – Evaluating how meaningful the latent point clouds are.
 2. **Generative Model** – Understanding how well latent representations capture information.
 
-💡 **Note:** Directly comparing ENFs to pixel-based models (e.g., CNNs) is not entirely fair since **ENFs are domain-agnostic**, not designed specifically for the image domain. Focus on improving **ENF-based performance** rather than competing with CNN methods.
+💡 **Note:** Directly comparing ENFs to pixel-based models (e.g., CNNs) is not entirely fair since **ENFs are domain-agnostic**, not designed specifically for the image domain. Focus on improving **ENF-based performance** compared to our baseline rather than competing with CNN methods.
 
 We provide three datasets to experiment with:
 - **FIGURE** (synthetic shape-based & motion-based dataset)
