@@ -88,7 +88,7 @@ class FigureDataset(Dataset):
         if self.transform:
             image = self.transform(image)
 
-        return image, points_r2, points_se2, label
+        return image, label, points_r2, points_se2
 
     def close(self):
         """Closes the HDF5 file."""
