@@ -63,6 +63,10 @@ conda activate enf-hackathon
 pip install -U "jax[cuda12]" flax optax matplotlib ml-collections pillow h5py tqdm jupyter wandb
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 ```
+For people working with a Mac Book run the following command to install jax
+```bash
+pip install jax-metal
+```
 
 ---
 
